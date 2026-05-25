@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('featured');
-            $table->timestamp();
-            $table->time();
+            $table->timestamp('date');
+            $table->time('time');
             $table->string('location');
             $table->timestamps();
         });
