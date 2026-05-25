@@ -5,16 +5,29 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Carbon\Carbon;
 
 class CreateEventTest extends TestCase
 {
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+    public function test_an_event_can_be_created(): void
     {
-        $response = $this->get('/');
+        // Arrange: 
+        $eventData = [
+            'name' => 'Clase de IS2',
+            'featured' => 'logo.png',
+            'date' => Carbon::now(),
+            'time' => '12:00:00',
+            'location' => 'Aula 504 bloque L de la UTEA',
+        ];
 
-        $response->assertStatus(200);
+        // Act:
+        $response = $this->post('/events', $eventData);
+
+        // Assert:
+        $response->assert(302);
+        $this->assertDatabaseHas('events', $eventData);
     }
 }
