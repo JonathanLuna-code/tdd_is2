@@ -27,7 +27,7 @@ class CreateEventTest extends TestCase
         $response = $this->post('/events', $eventData);
 
         // Assert:
-        $response->assert(302);
+        $response->assertStatus(302);
         $this->assertDatabaseHas('events', $eventData);
     }
 }
