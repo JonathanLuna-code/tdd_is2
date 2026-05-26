@@ -30,4 +30,10 @@ class EventController extends Controller
         $event->update($request->all());
         return response()->json($event, 200);
     }
+
+    public function destroy(Event $event)
+    {
+        $event->delete();
+        return response(null, 204);
+    }
 }
