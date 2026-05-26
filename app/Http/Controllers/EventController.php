@@ -4,19 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Http\Requests\StoreEventRequets;
 
 class EventController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreEventRequets $request)
     {
         $eventData = $request->all();
-        /**
-         * array:5 [// app/Http/Controllers/EventController.php:11
-             * "name" => "Clase de IS2"
-             * "featured" => "logo.png"
-         * ]
-         */
-        
+
         Event::create($eventData);
 
         return redirect()->route('events.index');
